@@ -17,10 +17,10 @@
 - debug: 'msg="[DEPRECATION NOTICE] Using `datadog_process_checks` is deprecated, use `process` under `datadog_checks` instead"'
   when: datadog_process_checks is defined
 
-- service: name=datadog-agent state=started enabled=yes
+- service: name=datadog-agent state=started enabled=yes pattern=/opt/datadog-agent/bin/supervisord
   when: datadog_enabled
 
-- service: name=datadog-agent state=stopped enabled=no
+- service: name=datadog-agent state=stopped enabled=no pattern=/opt/datadog-agent/bin/supervisord
   when: not datadog_enabled
 
 - name: Create a configuration file for each Datadog check
